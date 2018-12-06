@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		53568DC721AAB340008ADE08 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53568DC621AAB340008ADE08 /* Extensions.swift */; };
 		53568DCA21AAB3A5008ADE08 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53568DC921AAB3A5008ADE08 /* VideoCollectionViewCell.swift */; };
+		5358636E21B603D200B25F4B /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358636D21B603D200B25F4B /* MenuBar.swift */; };
 		536649C121A18DC200EBF1DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536649C021A18DC200EBF1DB /* AppDelegate.swift */; };
 		536649C321A18DC200EBF1DB /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536649C221A18DC200EBF1DB /* HomeController.swift */; };
 		536649C621A18DC200EBF1DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536649C421A18DC200EBF1DB /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 /* Begin PBXFileReference section */
 		53568DC621AAB340008ADE08 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		53568DC921AAB3A5008ADE08 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		5358636D21B603D200B25F4B /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
 		536649BD21A18DC200EBF1DB /* Youtube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Youtube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		536649C021A18DC200EBF1DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		536649C221A18DC200EBF1DB /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				536649C221A18DC200EBF1DB /* HomeController.swift */,
+				5358636D21B603D200B25F4B /* MenuBar.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 				53568DC721AAB340008ADE08 /* Extensions.swift in Sources */,
 				53568DCA21AAB3A5008ADE08 /* VideoCollectionViewCell.swift in Sources */,
 				536649C121A18DC200EBF1DB /* AppDelegate.swift in Sources */,
+				5358636E21B603D200B25F4B /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
