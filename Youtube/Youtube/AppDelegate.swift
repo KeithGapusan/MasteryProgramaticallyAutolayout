@@ -24,7 +24,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let layout = UICollectionViewFlowLayout()
         window?.rootViewController = UINavigationController(rootViewController: HomeController(collectionViewLayout: layout))
          UINavigationBar.appearance().barTintColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
-        
+        UINavigationBar.appearance().shadowImage = UIImage()
+      
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         let statusBarBacgroundView = UIView()
         statusBarBacgroundView.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31, alpha: 1)
         window?.addSubview(statusBarBacgroundView)
