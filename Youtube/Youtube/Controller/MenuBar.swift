@@ -12,7 +12,7 @@ class MenuBar: UIView {
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        cv.backgroundColor =  UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
+        cv.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
         cv.dataSource = self
         cv.delegate = self
         return cv
@@ -20,10 +20,14 @@ class MenuBar: UIView {
     let cellId  = "cellId"
     override init(frame: CGRect) {
         super.init(frame: frame)
-        collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
+        
         addSubview(collectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
+        print("collection view \(collectionView.frame.size)")
+        collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
+       // self.collectionView.estimatedItemSize = CGSize(width: 100, height: 100)
+
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init coder has not implemented")
@@ -36,7 +40,7 @@ extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .blue
+        cell.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
         return cell
     }
     
@@ -58,15 +62,18 @@ class MenuCell : BaseCell{
     let imageView : UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "home")
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     override func setupView() {
         addSubview(imageView)
-        addConstraintsWithFormat(format: "H:|[v0(20)]|", views: imageView)
-        addConstraintsWithFormat(format: "V:|[v0(20)]|", views: imageView)
+        addConstraintsWithFormat(format: "H:[v0(25)]", views: imageView)
+        addConstraintsWithFormat(format: "V:[v0(25)]", views: imageView)
+        print("center self \(self)")
         addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
         addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-
+        
+        
     }
 
     
