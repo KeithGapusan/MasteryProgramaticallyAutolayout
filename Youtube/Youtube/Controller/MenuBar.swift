@@ -9,6 +9,8 @@
 import UIKit
 
 class MenuBar: UIView {
+    let imageList = [#imageLiteral(resourceName: "home"), #imageLiteral(resourceName: "trending"),#imageLiteral(resourceName: "subscription"),#imageLiteral(resourceName: "inbox")]
+    
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -39,8 +41,10 @@ extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
+        
         cell.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
+        cell.imageView.image = imageList[indexPath.row]
         return cell
     }
     
@@ -57,24 +61,4 @@ extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UIColl
     }
     
 
-}
-class MenuCell : BaseCell{
-    let imageView : UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "home")
-        iv.contentMode = .scaleAspectFit
-        return iv
-    }()
-    override func setupView() {
-        addSubview(imageView)
-        addConstraintsWithFormat(format: "H:[v0(25)]", views: imageView)
-        addConstraintsWithFormat(format: "V:[v0(25)]", views: imageView)
-        print("center self \(self)")
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerX, relatedBy: .equal, toItem: self, attribute: .centerX, multiplier: 1, constant: 0))
-        addConstraint(NSLayoutConstraint(item: imageView, attribute: .centerY, relatedBy: .equal, toItem: self, attribute: .centerY, multiplier: 1, constant: 0))
-        
-        
-    }
-
-    
 }

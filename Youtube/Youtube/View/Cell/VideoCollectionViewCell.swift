@@ -8,21 +8,39 @@
 
 import UIKit
 
-class BaseCell: UICollectionViewCell {
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setupView()
-    }
-    func setupView(){
-        
-    }
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
 
 class VideoCollectionViewCell: UICollectionViewCell {
+   
+    var video : Video?{
+        didSet{
+            titleLabel.text = video?.title
+            thumbnailImageView.image = UIImage(named: video?.thumbnailImageName ?? "")
+            if let profileImage = video?.channel?.profileImageName {
+                userProfileImageView.image = UIImage(named: profileImage )
+            }
+            if let channelName = video?.channel?.name ,  let numberOfViews =  video?.numberOfViews{
+                let numberFormatter = NumberFormatter()
+                numberFormatter.numberStyle = .decimal
+                
+                let subtitleText = "\(channelName) - \(numberFormatter.string(from: (numberOfViews as NSNumber)) ?? "") "
+               // descTextView.text = subtitleText
+                
+            }
+            
+            if let videoTitle = video?.title{
+                let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
+                let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
+                let estimatedRect = NSString(string: videoTitle).boundingRect(with: size, options: options, attributes:  [.font: UIFont.systemFont(ofSize: 17.0)], context: nil)
+               // videoTitle.size(withAttributes: [.font: UIFont.systemFont(ofSize: 17.0)]) ?? .zero
+                if estimatedRect.size.height > 20 {
+                 //   titleLabelHeight
+                }
+            }
+        }
+    }
+        var titleLabelHeightConstraint: NSLayoutConstraint?
+
+    
         override init(frame: CGRect) {
             super.init(frame: frame)
             setupViews()
@@ -102,8 +120,8 @@ class VideoCollectionViewCell: UICollectionViewCell {
             //right
             addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
             //height
-            addConstraint(NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
-            
+            titleLabelHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20)
+            addConstraint(titleLabelHeightConstraint!)
             
             
             //top
@@ -113,7 +131,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
             //right
             addConstraint(NSLayoutConstraint(item: descTextView, attribute: .right, relatedBy: .equal, toItem: titleLabel, attribute: .right, multiplier: 1, constant: 0))
             //height
-            addConstraint(NSLayoutConstraint(item: descTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30))
+            let descTextViewHeightConstraints = NSLayoutConstraint(item: descTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30)
+            //height constraint
+//            titleLabelHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 0, constant: 44)
+            addConstraint(descTextViewHeightConstraints)
+            //height constraint
+//            addConstraint(NSLayoutConstraint(item: subtitleTextView, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 0, constant: 30))
+            
         }
     
 
