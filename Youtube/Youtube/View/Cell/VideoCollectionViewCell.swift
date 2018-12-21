@@ -23,17 +23,20 @@ class VideoCollectionViewCell: UICollectionViewCell {
                 numberFormatter.numberStyle = .decimal
                 
                 let subtitleText = "\(channelName) - \(numberFormatter.string(from: (numberOfViews as NSNumber)) ?? "") "
-               // descTextView.text = subtitleText
+                descTextView.text = subtitleText
                 
             }
             
             if let videoTitle = video?.title{
                 let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
                 let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-                let estimatedRect = NSString(string: videoTitle).boundingRect(with: size, options: options, attributes:  [.font: UIFont.systemFont(ofSize: 17.0)], context: nil)
+                let estimatedRect = NSString(string: videoTitle).boundingRect(with: size, options: options, attributes:  [.font: UIFont.systemFont(ofSize: 14.0)], context: nil)
                // videoTitle.size(withAttributes: [.font: UIFont.systemFont(ofSize: 17.0)]) ?? .zero
                 if estimatedRect.size.height > 20 {
                  //   titleLabelHeight
+                    titleLabelHeightConstraint?.constant = 44
+                }else{
+                    titleLabelHeightConstraint?.constant = 20
                 }
             }
         }
@@ -72,13 +75,14 @@ class VideoCollectionViewCell: UICollectionViewCell {
             let label = UILabel()
             // label.backgroundColor = .gray
             label.text = "December Avenue - Tonight"
+            label.numberOfLines = 0
             label.translatesAutoresizingMaskIntoConstraints = false
             return label
         }()
         let descTextView: UITextView = {
             let textView = UITextView()
             textView.text = "December Avenue Blank Space- 10,2324323423 views - 2years"
-            //  textView.backgroundColor = .yellow
+              textView.backgroundColor = .yellow
             textView.translatesAutoresizingMaskIntoConstraints = false
             textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
             textView.textColor = .gray
@@ -108,7 +112,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
             addConstraintsWithFormat(format: "H:|-16-[v0]-16-|", views: thumbnailImageView)
             addConstraintsWithFormat(format: "H:|-16-[v0(44)]", views: userProfileImageView, titleLabel)
             //vertical constraints
-            addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-16-[v2(1)]|", views: thumbnailImageView, userProfileImageView ,separator)
+            addConstraintsWithFormat(format: "V:|-16-[v0]-8-[v1(44)]-60-[v2(1)]|", views: thumbnailImageView, userProfileImageView ,separator)
             
             addConstraintsWithFormat(format: "H:|[v0]|", views: separator)
             //top
@@ -125,13 +129,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
             
             
             //top
-            addConstraint(NSLayoutConstraint.init(item: descTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 2))
+            addConstraint(NSLayoutConstraint.init(item: descTextView, attribute: .top, relatedBy: .equal, toItem: titleLabel, attribute: .bottom, multiplier: 1, constant: 4))
             //left
             addConstraint(NSLayoutConstraint.init(item: descTextView, attribute: .left, relatedBy: .equal, toItem: userProfileImageView, attribute: .right, multiplier: 1, constant: 8))
             //right
             addConstraint(NSLayoutConstraint(item: descTextView, attribute: .right, relatedBy: .equal, toItem: titleLabel, attribute: .right, multiplier: 1, constant: 0))
             //height
-            let descTextViewHeightConstraints = NSLayoutConstraint(item: descTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 30)
+            let descTextViewHeightConstraints = NSLayoutConstraint(item: descTextView, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 40)
             //height constraint
 //            titleLabelHeightConstraint = NSLayoutConstraint(item: titleLabel, attribute: .Height, relatedBy: .Equal, toItem: self, attribute: .Height, multiplier: 0, constant: 44)
             addConstraint(descTextViewHeightConstraints)
