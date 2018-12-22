@@ -9,29 +9,29 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-//    var videos :[Video] = {
-//        var channel = Channel()
-//        channel.name = "KanyeIsTheBestChannel"
-//        channel.profileImageName = "profile_image"
-//
-//        var blankSpaceVideo = Video()
-//        blankSpaceVideo.title = "Taylor Swift - BlankSpace"
-//        blankSpaceVideo.thumbnailImageName = "blackspace"
-//        blankSpaceVideo.channel = channel
-//        blankSpaceVideo.numberOfViews = 12312332
-//
-//        var channel2 = Channel()
-//        channel2.name = "Taylor Swift2"
-//        channel2.profileImageName = "profile_image"
-//
-//
-//        var badBloodVideo = Video()
-//        badBloodVideo.thumbnailImageName = "badblood"
-//        badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
-//        badBloodVideo.channel = channel2
-//        badBloodVideo.numberOfViews = 12312312443
-//        return [blankSpaceVideo, badBloodVideo]
-//    }()
+    //    var videos :[Video] = {
+    //        var channel = Channel()
+    //        channel.name = "KanyeIsTheBestChannel"
+    //        channel.profileImageName = "profile_image"
+    //
+    //        var blankSpaceVideo = Video()
+    //        blankSpaceVideo.title = "Taylor Swift - BlankSpace"
+    //        blankSpaceVideo.thumbnailImageName = "blackspace"
+    //        blankSpaceVideo.channel = channel
+    //        blankSpaceVideo.numberOfViews = 12312332
+    //
+    //        var channel2 = Channel()
+    //        channel2.name = "Taylor Swift2"
+    //        channel2.profileImageName = "profile_image"
+    //
+    //
+    //        var badBloodVideo = Video()
+    //        badBloodVideo.thumbnailImageName = "badblood"
+    //        badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
+    //        badBloodVideo.channel = channel2
+    //        badBloodVideo.numberOfViews = 12312312443
+    //        return [blankSpaceVideo, badBloodVideo]
+    //    }()
     var videos : [Video]?
     
     func fetchVideo(){
@@ -41,27 +41,28 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 return
             }
             do{
-              let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
+                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
                 //print(json)
                 self.videos = [Video]()
                 for dict in json as! [[String:Any]]{
-                    print(dict["title"])
                     let video = Video()
                     video.title = dict["title"] as? String
+                    video.thumbnailImageName = dict["thumbnail_name"] as? String
+                    print(dict["thumbnail_image_nameprint"] )
                     self.videos?.append(video)
                 }
                 DispatchQueue.main.async {
-                     self.collectionView?.reloadData()
-                    print(self.videos?.count)
+                    self.collectionView?.reloadData()
+                    
                 }
-                } catch let jsonError{
+            } catch let jsonError{
                 print(jsonError)
             }
-
-        }.resume()
+            
+            }.resume()
         
-       
-
+        
+        
     }
     
     override func viewDidLoad() {
@@ -97,7 +98,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         print("menu")
     }
     @objc func handleSearch(){
-       print("search")
+        print("search")
     }
     
     let menuBar:MenuBar = {
@@ -119,7 +120,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell =  collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! VideoCollectionViewCell
-     //  cell.backgroundColor = .red
+        //  cell.backgroundColor = .red
         
         cell.video = videos?[indexPath.row]
         return cell

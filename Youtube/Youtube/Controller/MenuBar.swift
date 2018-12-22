@@ -26,7 +26,7 @@ class MenuBar: UIView {
         addSubview(collectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
-        print("collection view \(collectionView.frame.size)")
+     //   print("collection view \(collectionView.frame.size)")
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
        // self.collectionView.estimatedItemSize = CGSize(width: 100, height: 100)
 
