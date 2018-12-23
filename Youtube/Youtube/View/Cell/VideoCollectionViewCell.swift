@@ -15,7 +15,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         didSet{
             titleLabel.text = video?.title
                         if let profileImage = video?.channel?.profileImageName {
-                userProfileImageView.image = UIImage(named: profileImage )
+               // userProfileImageView.image = UIImage(named: profileImage )
             }
             if let channelName = video?.channel?.name ,  let numberOfViews =  video?.numberOfViews{
                 let numberFormatter = NumberFormatter()
@@ -38,10 +38,28 @@ class VideoCollectionViewCell: UICollectionViewCell {
                     titleLabelHeightConstraint?.constant = 20
                 }
             }
+            setupProfileImage()
             setUpThumbnailImage()
         }
     }
     var titleLabelHeightConstraint: NSLayoutConstraint?
+    
+    func setupProfileImage(){
+        if let profileImageUrl = video?.channel?.profileImageName {
+           
+            URLSession.shared.dataTask(with: URL(string: profileImageUrl)!) { (data, response, error) in
+                if error != nil{
+                    print(error ?? "")
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.userProfileImageView.image = UIImage(data: data!)
+                 print(data)
+            }
+            }.resume()
+        }
+        
+    }
     
     func setUpThumbnailImage(){
         if let thumbnailImageUrl = video?.thumbnailImageName{
@@ -52,8 +70,10 @@ class VideoCollectionViewCell: UICollectionViewCell {
                     return
                 }
                 // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
-               
-                self.thumbnailImageView.image = UIImage(data: data!)
+                DispatchQueue.main.async {
+                    self.thumbnailImageView.image = UIImage(data: data!)
+                }
+                
  
             }.resume()
         
