@@ -46,36 +46,28 @@ class VideoCollectionViewCell: UICollectionViewCell {
     
     func setupProfileImage(){
         if let profileImageUrl = video?.channel?.profileImageName {
-           
-            URLSession.shared.dataTask(with: URL(string: profileImageUrl)!) { (data, response, error) in
-                if error != nil{
-                    print(error ?? "")
-                    return
-                }
-                DispatchQueue.main.async {
-                    self.userProfileImageView.image = UIImage(data: data!)
-                 print(data)
-            }
-            }.resume()
+            userProfileImageView.loadImageUsingUrlString(urlString: profileImageUrl)
+
         }
         
     }
     
     func setUpThumbnailImage(){
         if let thumbnailImageUrl = video?.thumbnailImageName{
-            URLSession.shared.dataTask(with: URL(string: thumbnailImageUrl)!) {
-                (data, response, error) in
-                if error != nil{
-                    print(error ?? "")
-                    return
-                }
-                // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
-                DispatchQueue.main.async {
-                    self.thumbnailImageView.image = UIImage(data: data!)
-                }
-                
- 
-            }.resume()
+            thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
+//            URLSession.shared.dataTask(with: URL(string: thumbnailImageUrl)!) {
+//                (data, response, error) in
+//                if error != nil{
+//                    print(error ?? "")
+//                    return
+//                }
+//                // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
+//                DispatchQueue.main.async {
+//                    self.thumbnailImageView.image = UIImage(data: data!)
+//                }
+//
+//
+//            }.resume()
         
         }
     }
@@ -85,10 +77,12 @@ class VideoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
     }
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
+       // imageView.backgroundColor = UIColor.blue
         imageView.image = #imageLiteral(resourceName: "blackspace.jpeg")
+        imageView.contentMode = .scaleAspectFit
+ 
         // imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -99,12 +93,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
         //view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let userProfileImageView: UIImageView = {
-        let imageView  = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageView  = CustomImageView()
         imageView.backgroundColor = .green
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
         imageView.image = #imageLiteral(resourceName: "profile_image.jpeg")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
