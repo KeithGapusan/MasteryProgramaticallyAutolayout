@@ -9,29 +9,6 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    //    var videos :[Video] = {
-    //        var channel = Channel()
-    //        channel.name = "KanyeIsTheBestChannel"
-    //        channel.profileImageName = "profile_image"
-    //
-    //        var blankSpaceVideo = Video()
-    //        blankSpaceVideo.title = "Taylor Swift - BlankSpace"
-    //        blankSpaceVideo.thumbnailImageName = "blackspace"
-    //        blankSpaceVideo.channel = channel
-    //        blankSpaceVideo.numberOfViews = 12312332
-    //
-    //        var channel2 = Channel()
-    //        channel2.name = "Taylor Swift2"
-    //        channel2.profileImageName = "profile_image"
-    //
-    //
-    //        var badBloodVideo = Video()
-    //        badBloodVideo.thumbnailImageName = "badblood"
-    //        badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
-    //        badBloodVideo.channel = channel2
-    //        badBloodVideo.numberOfViews = 12312312443
-    //        return [blankSpaceVideo, badBloodVideo]
-    //    }()
     var videos : [Video]?
     
     
@@ -100,10 +77,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.rightBarButtonItems = [menuBarButton , searchBarButton]
     }
     
+    let settingLauncher = SettingLauncher()
     
     @objc func handleMenu(){
-        print("menu")
+        settingLauncher.show()
     }
+
+    
     @objc func handleSearch(){
         print("search")
     }
