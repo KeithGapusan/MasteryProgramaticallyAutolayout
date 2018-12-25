@@ -11,6 +11,8 @@
 		1673815D21C8AD4B00DA7761 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1673815C21C8AD4B00DA7761 /* MenuCell.swift */; };
 		1673816021C8D55E00DA7761 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1673815F21C8D55E00DA7761 /* Video.swift */; };
 		16BC288A21CF29C700F2D83C /* Channel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16BC288921CF29C700F2D83C /* Channel.swift */; };
+		533E089921D200EC00E3AF9B /* SettingLauncher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E089821D200EC00E3AF9B /* SettingLauncher.swift */; };
+		533E089D21D2123600E3AF9B /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533E089C21D2123600E3AF9B /* SettingCell.swift */; };
 		53568DC721AAB340008ADE08 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53568DC621AAB340008ADE08 /* Extensions.swift */; };
 		53568DCA21AAB3A5008ADE08 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53568DC921AAB3A5008ADE08 /* VideoCollectionViewCell.swift */; };
 		5358636E21B603D200B25F4B /* MenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5358636D21B603D200B25F4B /* MenuBar.swift */; };
@@ -26,6 +28,8 @@
 		1673815C21C8AD4B00DA7761 /* MenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		1673815F21C8D55E00DA7761 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		16BC288921CF29C700F2D83C /* Channel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Channel.swift; sourceTree = "<group>"; };
+		533E089821D200EC00E3AF9B /* SettingLauncher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingLauncher.swift; sourceTree = "<group>"; };
+		533E089C21D2123600E3AF9B /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		53568DC621AAB340008ADE08 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		53568DC921AAB3A5008ADE08 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		5358636D21B603D200B25F4B /* MenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBar.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 			children = (
 				536649C221A18DC200EBF1DB /* HomeController.swift */,
 				5358636D21B603D200B25F4B /* MenuBar.swift */,
+				533E089821D200EC00E3AF9B /* SettingLauncher.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				53568DC921AAB3A5008ADE08 /* VideoCollectionViewCell.swift */,
 				1673815A21C8ACE700DA7761 /* BaseCell.swift */,
 				1673815C21C8AD4B00DA7761 /* MenuCell.swift */,
+				533E089C21D2123600E3AF9B /* SettingCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -200,10 +206,12 @@
 				536649C321A18DC200EBF1DB /* HomeController.swift in Sources */,
 				53568DC721AAB340008ADE08 /* Extensions.swift in Sources */,
 				53568DCA21AAB3A5008ADE08 /* VideoCollectionViewCell.swift in Sources */,
+				533E089D21D2123600E3AF9B /* SettingCell.swift in Sources */,
 				536649C121A18DC200EBF1DB /* AppDelegate.swift in Sources */,
 				1673816021C8D55E00DA7761 /* Video.swift in Sources */,
 				1673815B21C8ACE700DA7761 /* BaseCell.swift in Sources */,
 				16BC288A21CF29C700F2D83C /* Channel.swift in Sources */,
+				533E089921D200EC00E3AF9B /* SettingLauncher.swift in Sources */,
 				5358636E21B603D200B25F4B /* MenuBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -351,6 +359,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5M8AYP3HD3;
 				INFOPLIST_FILE = Youtube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -368,6 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5M8AYP3HD3;
 				INFOPLIST_FILE = Youtube/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

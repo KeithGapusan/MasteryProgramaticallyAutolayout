@@ -15,7 +15,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         didSet{
             titleLabel.text = video?.title
                         if let profileImage = video?.channel?.profileImageName {
-                userProfileImageView.image = UIImage(named: profileImage )
+               // userProfileImageView.image = UIImage(named: profileImage )
             }
             if let channelName = video?.channel?.name ,  let numberOfViews =  video?.numberOfViews{
                 let numberFormatter = NumberFormatter()
@@ -38,24 +38,36 @@ class VideoCollectionViewCell: UICollectionViewCell {
                     titleLabelHeightConstraint?.constant = 20
                 }
             }
+            setupProfileImage()
             setUpThumbnailImage()
         }
     }
     var titleLabelHeightConstraint: NSLayoutConstraint?
     
+    func setupProfileImage(){
+        if let profileImageUrl = video?.channel?.profileImageName {
+            userProfileImageView.loadImageUsingUrlString(urlString: profileImageUrl)
+
+        }
+        
+    }
+    
     func setUpThumbnailImage(){
         if let thumbnailImageUrl = video?.thumbnailImageName{
-            URLSession.shared.dataTask(with: URL(string: thumbnailImageUrl)!) {
-                (data, response, error) in
-                if error != nil{
-                    print(error ?? "")
-                    return
-                }
-                // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
-               
-                self.thumbnailImageView.image = UIImage(data: data!)
- 
-            }.resume()
+            thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
+//            URLSession.shared.dataTask(with: URL(string: thumbnailImageUrl)!) {
+//                (data, response, error) in
+//                if error != nil{
+//                    print(error ?? "")
+//                    return
+//                }
+//                // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
+//                DispatchQueue.main.async {
+//                    self.thumbnailImageView.image = UIImage(data: data!)
+//                }
+//
+//
+//            }.resume()
         
         }
     }
@@ -65,10 +77,12 @@ class VideoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
     }
-    let thumbnailImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+    let thumbnailImageView: CustomImageView = {
+        let imageView = CustomImageView()
+       // imageView.backgroundColor = UIColor.blue
         imageView.image = #imageLiteral(resourceName: "blackspace.jpeg")
+        imageView.contentMode = .scaleAspectFit
+ 
         // imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -79,12 +93,13 @@ class VideoCollectionViewCell: UICollectionViewCell {
         //view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    let userProfileImageView: UIImageView = {
-        let imageView  = UIImageView()
+    let userProfileImageView: CustomImageView = {
+        let imageView  = CustomImageView()
         imageView.backgroundColor = .green
         imageView.layer.cornerRadius = 20
         imageView.layer.masksToBounds = true
         imageView.image = #imageLiteral(resourceName: "profile_image.jpeg")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     

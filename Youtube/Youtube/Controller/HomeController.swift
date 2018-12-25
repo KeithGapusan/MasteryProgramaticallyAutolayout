@@ -9,30 +9,8 @@
 import UIKit
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-    //    var videos :[Video] = {
-    //        var channel = Channel()
-    //        channel.name = "KanyeIsTheBestChannel"
-    //        channel.profileImageName = "profile_image"
-    //
-    //        var blankSpaceVideo = Video()
-    //        blankSpaceVideo.title = "Taylor Swift - BlankSpace"
-    //        blankSpaceVideo.thumbnailImageName = "blackspace"
-    //        blankSpaceVideo.channel = channel
-    //        blankSpaceVideo.numberOfViews = 12312332
-    //
-    //        var channel2 = Channel()
-    //        channel2.name = "Taylor Swift2"
-    //        channel2.profileImageName = "profile_image"
-    //
-    //
-    //        var badBloodVideo = Video()
-    //        badBloodVideo.thumbnailImageName = "badblood"
-    //        badBloodVideo.title = "Taylor Swift - Bad Blood featuring Kendrick Lamar"
-    //        badBloodVideo.channel = channel2
-    //        badBloodVideo.numberOfViews = 12312312443
-    //        return [blankSpaceVideo, badBloodVideo]
-    //    }()
     var videos : [Video]?
+    
     
     func fetchVideo(){
         let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
@@ -47,8 +25,14 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
                 for dict in json as! [[String:Any]]{
                     let video = Video()
                     video.title = dict["title"] as? String
-                    video.thumbnailImageName = dict["thumbnail_name"] as? String
-                    print(dict["thumbnail_image_nameprint"] )
+                    video.thumbnailImageName = dict["thumbnail_image_name"] as? String
+                    let channelDictionary = dict["channel"] as! [String:Any]
+                    let channel = Channel()
+                    channel.name = channelDictionary["name"] as? String
+                    
+                    channel.profileImageName = channelDictionary["profile_image_name"] as? String
+                    
+                    video.channel = channel
                     self.videos?.append(video)
                 }
                 DispatchQueue.main.async {
@@ -93,10 +77,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.rightBarButtonItems = [menuBarButton , searchBarButton]
     }
     
+    let settingLauncher = SettingLauncher()
     
     @objc func handleMenu(){
-        print("menu")
+        settingLauncher.show()
     }
+
+    
     @objc func handleSearch(){
         print("search")
     }
