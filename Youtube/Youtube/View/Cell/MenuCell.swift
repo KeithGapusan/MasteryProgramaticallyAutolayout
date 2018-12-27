@@ -12,10 +12,22 @@ import UIKit
 class MenuCell : BaseCell{
     let imageView : UIImageView = {
         let iv = UIImageView()
-        iv.image = UIImage(named: "home")
+        iv.image = iv.image?.withRenderingMode(.alwaysTemplate)
+        iv.tintColor = UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
         iv.contentMode = .scaleAspectFit
         return iv
     }()
+    override var isSelected: Bool{
+        didSet{
+            self.imageView.tintColor = self.isSelected ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
+        }
+    }
+    
+    override var isHighlighted: Bool{
+        didSet{
+                self.imageView.tintColor = self.isHighlighted ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
+        }
+    }
     override func setupView() {
         addSubview(imageView)
         addConstraintsWithFormat(format: "H:[v0(25)]", views: imageView)

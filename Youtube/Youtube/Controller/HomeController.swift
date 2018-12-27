@@ -72,7 +72,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
     }
     private func setupNavBar(){
-        let searchBarButton = UIBarButtonItem(image: UIImage(named:"search")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleSearch))
+        let searchImage = UIImage(named:"search")?.withRenderingMode(.alwaysTemplate)
+        let searchButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        searchButton.setImage(searchImage, for: .normal)
+        searchButton.imageView?.tintColor = .white
+        searchButton.addTarget(self, action: #selector(handleSearch), for: .touchUpInside)
+        let searchBarButton = UIBarButtonItem(customView: searchButton)
+        
         let menuBarButton = UIBarButtonItem(image: UIImage(named:"menu")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenu))
         navigationItem.rightBarButtonItems = [menuBarButton , searchBarButton]
     }
