@@ -9,7 +9,7 @@
 import UIKit
 
 class MenuBar: UIView {
-    let imageList = [#imageLiteral(resourceName: "home"), #imageLiteral(resourceName: "trending"),#imageLiteral(resourceName: "subscription"),#imageLiteral(resourceName: "inbox")]
+    let imageList = ["home", "trending","subscription","inbox"]
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -26,10 +26,10 @@ class MenuBar: UIView {
         addSubview(collectionView)
         addConstraintsWithFormat(format: "H:|[v0]|", views: collectionView)
         addConstraintsWithFormat(format: "V:|[v0]|", views: collectionView)
-     //   print("collection view \(collectionView.frame.size)")
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
-       // self.collectionView.estimatedItemSize = CGSize(width: 100, height: 100)
-
+        let selectedIndexPath = IndexPath(item: 0, section: 0)
+            collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
+        
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init coder has not implemented")
@@ -37,14 +37,12 @@ class MenuBar: UIView {
 }
 extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return imageList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
-        
-        cell.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
-        cell.imageView.image = imageList[indexPath.row]
+            cell.imageView.image = UIImage(named:imageList[indexPath.row])?.withRenderingMode(.alwaysTemplate)
         return cell
     }
     
