@@ -69,7 +69,7 @@ class SettingLauncher:  NSObject{
 //            }
 //
 //        }
-       // self.flowlayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
+// self.flowlayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
     }
 
 }
