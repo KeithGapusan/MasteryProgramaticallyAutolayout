@@ -9,7 +9,27 @@
 import UIKit
 
 class MenuBar: UIView {
-    let imageList = ["home", "trending","subscription","inbox"]
+  //  let imageList = ["home", "trending","subscription","inbox"]
+    
+    let menuList : [Menu] = {
+        var menu1 =  Menu()
+        menu1.title = "Home"
+        menu1.imageName = "home"
+        
+        var menu2 =  Menu()
+        menu2.title = "trending"
+        menu2.imageName = "trending"
+        
+        var menu3 =  Menu()
+        menu3.title = "subscription"
+        menu3.imageName = "subscription"
+        
+        var menu4 =  Menu()
+        menu4.title = "inbox"
+        menu4.imageName = "inbox"
+        
+        return [menu1 , menu2,menu3, menu4]
+    }()
     
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -37,13 +57,15 @@ class MenuBar: UIView {
 }
 extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return imageList.count
+        return menuList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! MenuCell
-            cell.imageView.image = UIImage(named:imageList[indexPath.row])?.withRenderingMode(.alwaysTemplate)
-        return cell
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? MenuCell{
+            cell.menu = menuList[indexPath.row]
+            return cell
+        }
+        return UICollectionViewCell()
     }
     
     

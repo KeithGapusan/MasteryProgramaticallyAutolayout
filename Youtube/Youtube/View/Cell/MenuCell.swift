@@ -10,6 +10,17 @@ import UIKit
 
 
 class MenuCell : BaseCell{
+    
+    var menu: Menu?{
+        didSet{
+            if let name = menu?.imageName {
+                self.imageView.image = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
+            }
+           // self.imageView.tintColor = self.isSelected ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
+        }
+    }
+    
+    
     let imageView : UIImageView = {
         let iv = UIImageView()
         iv.image = iv.image?.withRenderingMode(.alwaysTemplate)
