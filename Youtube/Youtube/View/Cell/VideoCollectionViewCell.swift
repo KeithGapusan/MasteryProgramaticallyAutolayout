@@ -14,7 +14,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
     var video : Video?{
         didSet{
             titleLabel.text = video?.title
-                        if let profileImage = video?.channel?.profileImageName {
+            if let profileImage = video?.channel?.profileImageName {
                // userProfileImageView.image = UIImage(named: profileImage )
             }
             if let channelName = video?.channel?.name ,  let numberOfViews =  video?.numberOfViews{

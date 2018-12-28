@@ -66,7 +66,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.backgroundColor = UIColor.white
         collectionView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
         collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 50, left: 0, bottom: 0, right: 0)
-        
         setupMenuBar()
         setupNavBar()
         
@@ -78,7 +77,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         searchButton.imageView?.tintColor = .white
         searchButton.addTarget(self, action: #selector(handleSearch), for: .touchUpInside)
         let searchBarButton = UIBarButtonItem(customView: searchButton)
-        
         let menuBarButton = UIBarButtonItem(image: UIImage(named:"menu")?.withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleMenu))
         navigationItem.rightBarButtonItems = [menuBarButton , searchBarButton]
     }
@@ -108,7 +106,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         if let count = videos?.count{
             return count
         }
-        
         return 0
     }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,7 +117,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = (view.frame.width -  16 - 16) * 9 / 16
-        
         return CGSize(width: view.frame.width, height: height + 16 + 140)
     }
     
