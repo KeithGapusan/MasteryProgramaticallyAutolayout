@@ -15,13 +15,13 @@ class SettingCell: BaseCell {
         
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFit
-        iv.backgroundColor = .red
+        //   iv.backgroundColor = .red //  for testing porposes
         iv.image = #imageLiteral(resourceName: "subscription")
         return iv
     }()
     let titleLabel : UILabel = {
        let label = UILabel()
-        label.backgroundColor = .blue
+       // label.backgroundColor = .blue // for testing porposes
         label.text = "Setting"
         label.numberOfLines = 0
         return label
@@ -29,21 +29,23 @@ class SettingCell: BaseCell {
     
     let containerView : UIView = {
        let view = UIView()
-        view.backgroundColor = .gray
+    //   view.backgroundColor = .gray  //  for testing porposes
         return view
     }()
     
+    var setting : Setting? {
+        didSet{
+            imageView.image = UIImage(named: setting?.imageName ?? "default_image")?.withRenderingMode(.alwaysTemplate)
+            imageView.tintColor = .gray
+            
+            titleLabel.text = setting?.title ?? "Not Available"
+            
+        }
+    }
     override func setupView() {
         super.setupView()
-       // self.backgroundColor = .blue
-       // self.addSubview(containerView)
         self.addSubview(imageView)
         self.addSubview(titleLabel)
-//        addConstraintsWithFormat(format: "H:|[v0]|", views: containerView)
-//        
-//        print(containerView.frame.size.width)
-//        addConstraintsWithFormat(format: "V:|[v0]|", views: containerView)
-        
         
         addConstraintsWithFormat(format: "H:|-16-[v0(25)]-16-[v1]-16-|", views: imageView, titleLabel)
         addConstraintsWithFormat(format: "V:|-16-[v0]-16-|", views: titleLabel)
