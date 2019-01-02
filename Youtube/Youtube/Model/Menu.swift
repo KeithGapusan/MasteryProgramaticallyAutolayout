@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Menu: NSObject {
+struct Menu {
     var imageName: String?
     var title :  String?
 }

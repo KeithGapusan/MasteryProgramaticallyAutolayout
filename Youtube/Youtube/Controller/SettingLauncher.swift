@@ -21,6 +21,24 @@ class SettingLauncher:  NSObject{
     }()
     let cellId = "cellId"
     
+    let settings : [Setting] = {
+        var setting = Setting.init(title: "Setting", imageName: "settings")
+        var privacyPolicy = Setting.init(title: "Terms & privacy policy ", imageName: "policy")
+        var feedback = Setting.init(title: "Send Feedback", imageName: "feedback")
+        var help = Setting.init(title: "Help", imageName: "help")
+        var switchAccount = Setting.init(title: "Switch Account ", imageName: "account")
+        var cancel = Setting.init(title: "Cancel", imageName: "cancel")
+        
+        return [
+            setting,
+            privacyPolicy,
+            feedback,
+            help,
+            switchAccount,
+            cancel
+        ]
+    }()
+    
     @objc func show(){
         print("menu")
         if let window = UIApplication.shared.keyWindow{
@@ -32,7 +50,7 @@ class SettingLauncher:  NSObject{
             blackView.alpha = 0
             
             blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismiss)))
-            let height :  CGFloat = 200
+            let height :  CGFloat = 350
             let y = ((window.frame.height) - height)
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height:height)
             print("width\(collectionView.frame.width)")
@@ -62,24 +80,16 @@ class SettingLauncher:  NSObject{
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(SettingCell.self, forCellWithReuseIdentifier: cellId)
-//        if let flowlayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout{
-//            if let window = UIApplication.shared.keyWindow{
-//               let witdh =  window.frame.width
-//                flowlayout.estimatedItemSize = CGSize(width: witdh, height: 1)
-//            }
-//
-//        }
-// self.flowlayout.estimatedItemSize = UICollectionViewFlowLayoutAutomaticSize
     }
-
 }
 extension SettingLauncher:UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return settings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as?  SettingCell{
+            cell.setting = settings[indexPath.row]
             return cell
         }
         return UICollectionViewCell()

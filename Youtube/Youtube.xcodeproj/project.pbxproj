@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		162AA8E921DC8995009C250E /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162AA8E821DC8995009C250E /* Setting.swift */; };
 		164EA83E21D4C5F700D39329 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EA83D21D4C5F700D39329 /* Menu.swift */; };
 		164EA84221D4CC1400D39329 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 164EA84121D4CC1400D39329 /* MenuViewModel.swift */; };
 		1673815B21C8ACE700DA7761 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1673815A21C8ACE700DA7761 /* BaseCell.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		162AA8E821DC8995009C250E /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		164EA83D21D4C5F700D39329 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		164EA84121D4CC1400D39329 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		1673815A21C8ACE700DA7761 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				16BC288921CF29C700F2D83C /* Channel.swift */,
 				1673815F21C8D55E00DA7761 /* Video.swift */,
 				164EA83D21D4C5F700D39329 /* Menu.swift */,
+				162AA8E821DC8995009C250E /* Setting.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				536649C321A18DC200EBF1DB /* HomeController.swift in Sources */,
 				53568DC721AAB340008ADE08 /* Extensions.swift in Sources */,
 				53568DCA21AAB3A5008ADE08 /* VideoCollectionViewCell.swift in Sources */,
+				162AA8E921DC8995009C250E /* Setting.swift in Sources */,
 				533E089D21D2123600E3AF9B /* SettingCell.swift in Sources */,
 				536649C121A18DC200EBF1DB /* AppDelegate.swift in Sources */,
 				164EA83E21D4C5F700D39329 /* Menu.swift in Sources */,
