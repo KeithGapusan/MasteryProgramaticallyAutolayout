@@ -28,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         if #available(iOS 11, *) {
-            
+            if let statusBar = UIApplication.shared.value(forKey: "statusBar") as? UIView {
+                statusBar.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31, alpha: 1)
+            }
         }else{
             let statusBarBacgroundView = UIView()
             statusBarBacgroundView.backgroundColor = UIColor.rgb(red: 194, green: 31, blue: 31, alpha: 1)
@@ -36,13 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             window?.addConstraintsWithFormat(format: "H:|-0-[v0]-0-|", views: statusBarBacgroundView)
             window?.addConstraintsWithFormat(format: "V:|-1-[v0(20)]", views: statusBarBacgroundView)
         }
-        
-       
-        
-//        UINavigationBar.appearance().backgroundColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
-//        UINavigationBar.appearance().tintColor = UIColor(red: 230/255, green: 32/255, blue: 31/255, alpha: 1)
-        
-        
         return true
     }
 

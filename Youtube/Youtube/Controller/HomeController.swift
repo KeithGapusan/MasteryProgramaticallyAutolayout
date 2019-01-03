@@ -114,10 +114,21 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         return mb
     }()
     private func setupMenuBar(){
+        navigationController?.hidesBarsOnSwipe = true
+        let redView = UIView()
+        redView.backgroundColor = UIColor.rgb(red: 230, green: 32, blue: 31, alpha: 1)
+        view.addSubview(redView)
+        view.addConstraintsWithFormat(format: "H:|[v0]|", views: redView)
+        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: redView)
+        
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:|[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
         print("menu bar view \(menuBar.frame.size)")
+        let guide = view.safeAreaLayoutGuide
+        menuBar.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+        menuBar.topAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+        
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if let count = videos?.count{
