@@ -11,7 +11,7 @@ import UIKit
 
 
 class SettingLauncher:  NSObject{
-    
+    var homeController : HomeController?
     let blackView = UIView()
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -22,12 +22,12 @@ class SettingLauncher:  NSObject{
     let cellId = "cellId"
     
     let settings : [Setting] = {
-        var setting = Setting.init(title: "Setting", imageName: "settings")
-        var privacyPolicy = Setting.init(title: "Terms & privacy policy ", imageName: "policy")
-        var feedback = Setting.init(title: "Send Feedback", imageName: "feedback")
-        var help = Setting.init(title: "Help", imageName: "help")
-        var switchAccount = Setting.init(title: "Switch Account ", imageName: "account")
-        var cancel = Setting.init(title: "Cancel", imageName: "cancel")
+        var setting = Setting(title: .Setting , imageName: "settings")
+        var privacyPolicy = Setting(title: .PrivacyPolicy, imageName: "policy")
+        var feedback = Setting(title: .Feedback, imageName: "feedback")
+        var help = Setting(title: .Help, imageName: "help")
+        var switchAccount = Setting(title: .SwitchAccount , imageName: "account")
+        var cancel = Setting(title: .Cancel, imageName: "cancel")
         
         return [
             setting,
@@ -37,42 +37,25 @@ class SettingLauncher:  NSObject{
             switchAccount,
             cancel
         ]
+        
     }()
     
     @objc func show(){
-        print("menu")
         if let window = UIApplication.shared.keyWindow{
-            
             blackView.backgroundColor = UIColor(white: 0, alpha: 0.5)
             window.addSubview(blackView)
             window.addSubview(collectionView)
             blackView.frame = window.frame
             blackView.alpha = 0
-            
-            blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismiss)))
+            blackView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(SettingLauncher.dismiss(setting:))))
             let height :  CGFloat = 350
             let y = ((window.frame.height) - height)
             collectionView.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height:height)
-            print("width\(collectionView.frame.width)")
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
                 self.blackView.alpha = 1
                 self.collectionView.frame.origin.y = y
 
             }, completion: nil)
-        }
-    }
-    @objc func dismiss(){
-       // print("handle dismiss")
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.blackView.alpha = 0
-            self.collectionView.frame.origin.y = self.collectionView.frame.origin.y +  self.collectionView.frame.size.height
-
-        }) { (completed) in
-            if completed {
-                self.blackView.removeFromSuperview()
-                self.collectionView.removeFromSuperview()
-            }
         }
     }
     override init() {
@@ -99,5 +82,26 @@ extension SettingLauncher:UICollectionViewDelegate , UICollectionViewDataSource,
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+    @objc func dismiss(setting: Setting) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.blackView.alpha = 0
+            if let window = UIApplication.shared.keyWindow{
+                self.collectionView.frame.origin.y = self.collectionView.frame.origin.y +  self.collectionView.frame.size.height
+
+            }
+        }) { (completed) in
+          //  let setting = self.settings[indexPath.row]
+            self.blackView.removeFromSuperview()
+            self.collectionView.removeFromSuperview()
+            if !setting.isKind(of: UIGestureRecognizer.self) && (setting.title != .Cancel){
+                self.homeController?.showController(setting: setting)
+            }
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let setting = self.settings[indexPath.row]
+        dismiss(setting: setting)
     }
 }

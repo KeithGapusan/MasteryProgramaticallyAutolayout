@@ -81,15 +81,32 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         navigationItem.rightBarButtonItems = [menuBarButton , searchBarButton]
     }
     
-    let settingLauncher = SettingLauncher()
+    lazy var settingLauncher : SettingLauncher = {
+       var setting = SettingLauncher()
+        setting.homeController = self
+        
+        return setting
+    }()
+    
     
     @objc func handleMenu(){
+      //  settingLauncher.homeController = self
         settingLauncher.show()
     }
 
     
     @objc func handleSearch(){
         print("search")
+    }
+    
+    
+    func showController(setting: Setting){
+        let viewController = UIViewController()
+        viewController.view.backgroundColor = .white
+        viewController.navigationItem.title = setting.title.rawValue
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     let menuBar:MenuBar = {

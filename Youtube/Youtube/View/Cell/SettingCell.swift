@@ -40,7 +40,7 @@ class SettingCell: BaseCell {
             imageView.image = UIImage(named: setting?.imageName ?? "default_image")?.withRenderingMode(.alwaysTemplate)
             imageView.tintColor = .gray
             
-            titleLabel.text = setting?.title ?? "Not Available"
+            titleLabel.text = setting?.title.rawValue ?? "Not Available"
             
         }
     }
