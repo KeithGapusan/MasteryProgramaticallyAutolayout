@@ -8,8 +8,13 @@
 
 import Foundation
 
-
-struct Setting {
-    var title : String
-    var imageName : String
+/*Struct vs Class - Struct cannot derived into @obj class selector*/
+class Setting : NSObject {
+    var title : String?
+    var imageName : String?
+    
+    init(title: String , imageName: String) {
+        self.title = title
+        self.imageName = imageName
+    }
 }
