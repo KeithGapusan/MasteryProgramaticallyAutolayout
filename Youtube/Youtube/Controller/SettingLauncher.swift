@@ -22,12 +22,12 @@ class SettingLauncher:  NSObject{
     let cellId = "cellId"
     
     let settings : [Setting] = {
-        var setting = Setting(title: "Setting", imageName: "settings")
-        var privacyPolicy = Setting(title: "Terms & privacy policy ", imageName: "policy")
-        var feedback = Setting(title: "Send Feedback", imageName: "feedback")
-        var help = Setting(title: "Help", imageName: "help")
-        var switchAccount = Setting(title: "Switch Account ", imageName: "account")
-        var cancel = Setting(title: "Cancel", imageName: "cancel")
+        var setting = Setting(title: .Setting , imageName: "settings")
+        var privacyPolicy = Setting(title: .PrivacyPolicy, imageName: "policy")
+        var feedback = Setting(title: .Feedback, imageName: "feedback")
+        var help = Setting(title: .Help, imageName: "help")
+        var switchAccount = Setting(title: .SwitchAccount , imageName: "account")
+        var cancel = Setting(title: .Cancel, imageName: "cancel")
         
         return [
             setting,
@@ -37,6 +37,7 @@ class SettingLauncher:  NSObject{
             switchAccount,
             cancel
         ]
+        
     }()
     
     @objc func show(){
@@ -93,7 +94,7 @@ extension SettingLauncher:UICollectionViewDelegate , UICollectionViewDataSource,
           //  let setting = self.settings[indexPath.row]
             self.blackView.removeFromSuperview()
             self.collectionView.removeFromSuperview()
-            if !setting.isKind(of: UIGestureRecognizer.self) && (setting.title != "Cancel"){
+            if !setting.isKind(of: UIGestureRecognizer.self) && (setting.title != .Cancel){
                 self.homeController?.showController(setting: setting)
             }
         }

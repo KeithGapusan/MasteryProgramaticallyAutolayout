@@ -10,11 +10,20 @@ import Foundation
 
 /*Struct vs Class - Struct cannot derived into @obj class selector*/
 class Setting : NSObject {
-    var title : String?
+    var title : SettingName
     var imageName : String?
     
-    init(title: String , imageName: String) {
+    init(title: SettingName , imageName: String) {
         self.title = title
         self.imageName = imageName
     }
+}
+
+enum SettingName:String {
+    case Setting = "Setting"
+    case Feedback = "Send Feedback"
+    case PrivacyPolicy = "Terms & privacy policy"
+    case Help = "Help"
+    case SwitchAccount = "Switch Account"
+    case Cancel = "Cancel"
 }
