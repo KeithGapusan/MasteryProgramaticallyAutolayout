@@ -11,6 +11,8 @@ import UIKit
 
 
 class SettingCell: BaseCell {
+    
+    
     let imageView  : UIImageView = {
         
         let iv = UIImageView()
@@ -40,6 +42,13 @@ class SettingCell: BaseCell {
             
             titleLabel.text = setting?.title ?? "Not Available"
             
+        }
+    }
+    
+    override var isHighlighted: Bool{
+        didSet{
+        
+            self.backgroundColor = isHighlighted ? UIColor.lightGray : .white
         }
     }
     override func setupView() {
