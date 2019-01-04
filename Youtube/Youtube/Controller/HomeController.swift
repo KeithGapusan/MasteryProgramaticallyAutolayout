@@ -123,7 +123,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(70)]", views: menuBar)
         print("menu bar view \(menuBar.frame.size)")
         let guide = view.safeAreaLayoutGuide
         menuBar.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
