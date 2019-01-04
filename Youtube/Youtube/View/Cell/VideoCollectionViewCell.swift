@@ -52,20 +52,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     func setUpThumbnailImage(){
         if let thumbnailImageUrl = video?.thumbnailImageName{
             thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
-//            URLSession.shared.dataTask(with: URL(string: thumbnailImageUrl)!) {
-//                (data, response, error) in
-//                if error != nil{
-//                    print(error ?? "")
-//                    return
-//                }
-//                // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
-//                DispatchQueue.main.async {
-//                    self.thumbnailImageView.image = UIImage(data: data!)
-//                }
-//
-//
-//            }.resume()
-        
         }
     }
     

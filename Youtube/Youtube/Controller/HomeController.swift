@@ -11,48 +11,18 @@ import UIKit
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var videos : [Video]?
     
-    
-    func fetchVideo(){
-        let url = URL(string: "https://s3-us-west-2.amazonaws.com/youtubeassets/home.json")
-        URLSession.shared.dataTask(with: url!) { (data, response, error) in
-            if error != nil{
-                return
-            }
-            do{
-                let json = try JSONSerialization.jsonObject(with: data!, options: .mutableContainers)
-                //print(json)
-                self.videos = [Video]()
-                for dict in json as! [[String:Any]]{
-                    let video = Video()
-                    video.title = dict["title"] as? String
-                    video.thumbnailImageName = dict["thumbnail_image_name"] as? String
-                    let channelDictionary = dict["channel"] as! [String:Any]
-                    let channel = Channel()
-                    channel.name = channelDictionary["name"] as? String
-                    
-                    channel.profileImageName = channelDictionary["profile_image_name"] as? String
-                    
-                    video.channel = channel
-                    self.videos?.append(video)
-                }
-                DispatchQueue.main.async {
-                    self.collectionView?.reloadData()
-                    
-                }
-            } catch let jsonError{
-                print(jsonError)
-            }
-            
-            }.resume()
+    fileprivate func fetchVideos() {
+        // Do any additional setup after loading the view, typically from a nib.
         
-        
-        
+        APIService.sharedInstance.fetchVideo { (data) in
+            self.videos = data
+            self.collectionView.reloadData()
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        fetchVideo()
+        fetchVideos()
         navigationItem.title = "Home"
         let titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 32, height: view.frame.height))
         titleLabel.text = "Home"
@@ -123,7 +93,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         view.addSubview(menuBar)
         view.addConstraintsWithFormat(format: "H:|[v0]|", views: menuBar)
-        view.addConstraintsWithFormat(format: "V:[v0(50)]", views: menuBar)
+        view.addConstraintsWithFormat(format: "V:[v0(70)]", views: menuBar)
         print("menu bar view \(menuBar.frame.size)")
         let guide = view.safeAreaLayoutGuide
         menuBar.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
