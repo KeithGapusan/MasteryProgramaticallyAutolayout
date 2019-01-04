@@ -27,6 +27,9 @@ extension UIView{
     }
 }
 let imageCache = NSCache<AnyObject, AnyObject>()
+
+
+
 class CustomImageView: UIImageView{
     var imageUrlString: String?
     
@@ -52,12 +55,9 @@ class CustomImageView: UIImageView{
                         self.image = cache
                     }
                     imageCache.setObject(cache!, forKey: urlString as AnyObject)
-                    
-                    
                 }
             }.resume()
-    }
-
+        }
 }
 //extension UINavigationController {
 //
