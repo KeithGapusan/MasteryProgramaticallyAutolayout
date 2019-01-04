@@ -10,6 +10,7 @@ import UIKit
 
 class MenuBar: UIView {
   //  let imageList = ["home", "trending","subscription","inbox"]
+    var homeController:HomeController?
     var horizontalBarViewLeftConstraints:NSLayoutConstraint?
     let menuList : [Menu] = {
         var menu1 =  Menu()
@@ -64,10 +65,11 @@ class MenuBar: UIView {
         horizontalBarViewLeftConstraints?.isActive = true
         horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
-        horizontalBarView.heightAnchor.constraint(equalToConstant:8).isActive = true
+        horizontalBarView.heightAnchor.constraint(equalToConstant:5).isActive = true
     }
 }
 extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuList.count
     }
@@ -94,13 +96,8 @@ extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UIColl
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let x = CGFloat(indexPath.item) * frame.width / 4
-        UIView.animate(withDuration: 0.50, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            self.horizontalBarViewLeftConstraints?.constant = x
-            self.layoutIfNeeded()
-        }) { (completed) in
-           // print(completed)
-        }
+        self.layoutIfNeeded()
+        self.homeController?.scrollManuToItem(indexPath: indexPath)
     }
 
 }

@@ -27,9 +27,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
                 let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
                 let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
                 let estimatedRect = NSString(string: videoTitle).boundingRect(with: size, options: options, attributes:  [.font: UIFont.systemFont(ofSize: 14.0)], context: nil)
-                // videoTitle.size(withAttributes: [.font: UIFont.systemFont(ofSize: 17.0)]) ?? .zero
                 if estimatedRect.size.height > 20 {
-                    //   titleLabelHeight
                     titleLabelHeightConstraint?.constant = 44
                 }else{
                     titleLabelHeightConstraint?.constant = 20
