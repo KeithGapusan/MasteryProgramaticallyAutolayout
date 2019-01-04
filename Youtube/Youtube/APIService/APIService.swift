@@ -43,10 +43,5 @@ class APIService:  NSObject {
             }
             
         }.resume()
-        
-        
-        
     }
-    
-    
 }
