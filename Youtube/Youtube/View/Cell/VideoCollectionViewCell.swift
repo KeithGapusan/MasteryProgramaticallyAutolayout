@@ -27,9 +27,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
                 let size = CGSize(width: frame.width - 16 - 44 - 8 - 16, height: 1000)
                 let options = NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
                 let estimatedRect = NSString(string: videoTitle).boundingRect(with: size, options: options, attributes:  [.font: UIFont.systemFont(ofSize: 14.0)], context: nil)
-                // videoTitle.size(withAttributes: [.font: UIFont.systemFont(ofSize: 17.0)]) ?? .zero
                 if estimatedRect.size.height > 20 {
-                    //   titleLabelHeight
                     titleLabelHeightConstraint?.constant = 44
                 }else{
                     titleLabelHeightConstraint?.constant = 20
@@ -52,20 +50,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     func setUpThumbnailImage(){
         if let thumbnailImageUrl = video?.thumbnailImageName{
             thumbnailImageView.loadImageUsingUrlString(urlString: thumbnailImageUrl)
-//            URLSession.shared.dataTask(with: URL(string: thumbnailImageUrl)!) {
-//                (data, response, error) in
-//                if error != nil{
-//                    print(error ?? "")
-//                    return
-//                }
-//                // thumbnailImageView.image = UIImage(named: thumbnailImageUrl ?? "")
-//                DispatchQueue.main.async {
-//                    self.thumbnailImageView.image = UIImage(data: data!)
-//                }
-//
-//
-//            }.resume()
-        
         }
     }
     

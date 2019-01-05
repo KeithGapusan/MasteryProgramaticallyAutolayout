@@ -16,7 +16,6 @@ class MenuCell : BaseCell{
             if let name = menu?.imageName {
                 self.imageView.image = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
             }
-           // self.imageView.tintColor = self.isSelected ? UIColor.white : UIColor.rgb(red: 91, green: 14, blue: 13, alpha: 1)
         }
     }
     

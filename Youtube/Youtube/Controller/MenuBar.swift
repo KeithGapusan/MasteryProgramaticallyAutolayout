@@ -10,7 +10,8 @@ import UIKit
 
 class MenuBar: UIView {
   //  let imageList = ["home", "trending","subscription","inbox"]
-    
+    var homeController:HomeController?
+    var horizontalBarViewLeftConstraints:NSLayoutConstraint?
     let menuList : [Menu] = {
         var menu1 =  Menu()
         menu1.title = "Home"
@@ -49,13 +50,26 @@ class MenuBar: UIView {
         collectionView.register(MenuCell.self, forCellWithReuseIdentifier: cellId)
         let selectedIndexPath = IndexPath(item: 0, section: 0)
             collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
-        
+        setupHorizontalBar()
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init coder has not implemented")
     }
+    
+    func setupHorizontalBar(){
+        let horizontalBarView = UIView()
+        horizontalBarView.backgroundColor = UIColor(white: 0.80, alpha: 1)
+        horizontalBarView.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(horizontalBarView)
+        horizontalBarViewLeftConstraints =  horizontalBarView.leftAnchor.constraint(equalTo: self.leftAnchor)
+        horizontalBarViewLeftConstraints?.isActive = true
+        horizontalBarView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        horizontalBarView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 1/4).isActive = true
+        horizontalBarView.heightAnchor.constraint(equalToConstant:5).isActive = true
+    }
 }
 extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return menuList.count
     }
@@ -80,5 +94,10 @@ extension MenuBar :UICollectionViewDelegate,  UICollectionViewDataSource, UIColl
         return 0
     }
     
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.layoutIfNeeded()
+        self.homeController?.scrollManuToItem(indexPath: indexPath)
+    }
 
 }
