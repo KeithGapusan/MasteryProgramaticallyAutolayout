@@ -11,7 +11,9 @@ import UIKit
 
 
 class SettingLauncher:  NSObject{
+    
     var homeController : HomeController?
+    
     let blackView = UIView()
     lazy var collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,6 +21,7 @@ class SettingLauncher:  NSObject{
         cv.backgroundColor = .white
         return cv
     }()
+    
     let cellId = "cellId"
     
     let settings : [Setting] = {

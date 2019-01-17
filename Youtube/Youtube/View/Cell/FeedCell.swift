@@ -33,7 +33,6 @@ class FeedCell: BaseCell {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: cellId)
     }
     
-    
     override func setupView() {
         super.setupView()
         setupCollectionView()

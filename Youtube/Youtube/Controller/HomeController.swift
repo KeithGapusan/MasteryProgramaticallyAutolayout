@@ -53,7 +53,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         setupColletionView()
         setupMenuBar()
         setupNavBar()
-        
     }
     
     private func setupNavBar(){
@@ -165,7 +164,6 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let index = scrollView.contentOffset.x / 4
         menuBar.horizontalBarViewLeftConstraints?.constant = index
     }
-    
 }
 
 
