@@ -38,8 +38,6 @@ extension UIView{
         }, completion: completion)
 
     }
-    
-
 }
 let imageCache = NSCache<AnyObject, AnyObject>()
 

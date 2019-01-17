@@ -17,8 +17,7 @@ class MenuCell : BaseCell{
                 self.imageView.image = UIImage(named: name)?.withRenderingMode(.alwaysTemplate)
             }
         }
-    }
-    
+    }    
     
     let imageView : UIImageView = {
         let iv = UIImageView()
